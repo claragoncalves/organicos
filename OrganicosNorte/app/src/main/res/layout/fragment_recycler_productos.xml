@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.digitalhouse.organicosnorte.view.FragmentRecyclerProductos">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="100"
+        android:id="@+id/recyclerProductos"/>
+    <TextView
+        android:background="@color/colorAccent"
+        android:padding="10dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:textSize="22dp"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewTotalPrice"/>
+
+</LinearLayout>

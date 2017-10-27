@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Organicos Norte</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="total_price">Total</string>
+</resources>

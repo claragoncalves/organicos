@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    app:cardUseCompatPadding="false"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        <LinearLayout
+            android:id="@+id/containerProductCellInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="60"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewCellProductName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/open_sans"
+                android:textSize="20dp"
+                />
+
+            <TextView
+                android:id="@+id/textViewCellProductDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_semibold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="40"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <Button
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:id="@+id/buttonCellMinus"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="40dp"
+                android:fontFamily="@font/open_sans_bold"
+                android:layout_height="wrap_content"
+                android:text="@string/minus" />
+
+            <TextView
+                android:id="@+id/textViewCellProductQuantity"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_bold"
+                android:gravity="center"
+                android:text="4"
+                android:textSize="22dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:textSize="22dp"
+                android:fontFamily="@font/open_sans_bold"
+                android:textStyle="bold"
+                android:id="@+id/buttonCellPlus"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="@string/plus" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>
