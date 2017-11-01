@@ -4,6 +4,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.example.digitalhouse.organicosnorte.model.pojo.Producto;
 
@@ -25,5 +26,8 @@ public interface ProductoDao {
 
     @Delete
     void deleteProduct(Producto producto);
+
+    @Update
+    void modifyProduct(Producto producto);
 
 }

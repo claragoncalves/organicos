@@ -84,8 +84,9 @@ public class AdapterRecyclerProductos extends RecyclerView.Adapter<AdapterRecycl
         private Button buttonPlus;
         private TextView textViewQuantity;
         private LinearLayout productInfo;
+        private TextView textViewPrice;
 
-        public ProductosViewHolder(View itemView) {
+        private ProductosViewHolder(View itemView) {
             super(itemView);
             textViewNombre = itemView.findViewById(R.id.textViewCellProductName);
             textViewDescripcion = itemView.findViewById(R.id.textViewCellProductDescription);
@@ -93,12 +94,18 @@ public class AdapterRecyclerProductos extends RecyclerView.Adapter<AdapterRecycl
             productInfo = itemView.findViewById(R.id.containerProductCellInfo);
             buttonMinus = itemView.findViewById(R.id.buttonCellMinus);
             buttonPlus = itemView.findViewById(R.id.buttonCellPlus);
+            textViewPrice = itemView.findViewById(R.id.textViewCellProductPrice);
         }
 
-        public void bindProducto(Producto producto){
+        private void bindProducto(Producto producto){
             textViewNombre.setText(producto.getNombre());
             textViewDescripcion.setText(producto.getDescripcion());
             textViewQuantity.setText(producto.getQuantity().toString());
+            if (categoryName.equals(FragmentViewPagerProductos.KEY_COMPRA)){
+                textViewPrice.setText("$" + producto.getPrecioCompra().toString());
+            }else {
+                textViewPrice.setText("$" + producto.getPrecioVenta().toString());
+            }
         }
     }
 

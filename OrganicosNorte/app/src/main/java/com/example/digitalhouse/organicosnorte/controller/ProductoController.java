@@ -29,4 +29,7 @@ public class ProductoController {
         DBSingleton.getInstance(context).productoDao().deleteProduct(producto);
     }
 
+    public static void modifyProduct(Context context, Producto producto){
+        DBSingleton.getInstance(context).productoDao().modifyProduct(producto);
+    }
 }
