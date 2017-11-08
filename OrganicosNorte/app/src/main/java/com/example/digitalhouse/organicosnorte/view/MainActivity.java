@@ -1,6 +1,7 @@
 package com.example.digitalhouse.organicosnorte.view;
 
 import android.graphics.Color;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -11,21 +12,29 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.digitalhouse.organicosnorte.adapter.AdapterRecyclerPedidos;
 import com.example.digitalhouse.organicosnorte.adapter.AdapterRecyclerProductos;
 import com.example.digitalhouse.organicosnorte.R;
+import com.example.digitalhouse.organicosnorte.controller.PedidoController;
+import com.example.digitalhouse.organicosnorte.controller.PedidoDetalleController;
 import com.example.digitalhouse.organicosnorte.controller.ProductoController;
+import com.example.digitalhouse.organicosnorte.model.pojo.Pedido;
+import com.example.digitalhouse.organicosnorte.model.pojo.PedidoDetalle;
 import com.example.digitalhouse.organicosnorte.model.pojo.Producto;
 
-public class MainActivity extends AppCompatActivity implements AdapterRecyclerProductos.TapAction, FragmentAddProduct.AddProduct, FragmentProductDetail.ProductModification {
+import java.util.List;
 
-    TextView textViewTotal;
+public class MainActivity extends AppCompatActivity implements AdapterRecyclerProductos.TapAction, FragmentAddProduct.AddProduct, FragmentProductDetail.ProductModification, FragmentRecyclerProductos.PedidoAddListener, AdapterRecyclerPedidos.PedidoTapped {
+
     private static final String KEY_FRAGMENT_VIEWPAGERCOMPRAVENTA = "fragmentViewPagerCompraVenta";
-    private static final String KEY_FRAGMENT_PRODUCTLIST = "fragmentProductList";
     private static final String KEY_FRAGMENT_ADDPRODUCT = "fragmentAddProduct";
     private static final String KEY_FRAGMENT_PRODUCTDETAIL = "fragmentProductDetail";
+    private static final String KEY_FRAGMENT_DETALLESPEDIDOS = "fragmentDetallesPedidos";
+    private FrameLayout container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +42,11 @@ public class MainActivity extends AppCompatActivity implements AdapterRecyclerPr
         setContentView(R.layout.activity_main);
         Toolbar miToolbar = findViewById(R.id.toolbarAct1);
         miToolbar.setTitle("Organicos Norte");
+        //miToolbar.setNavigationIcon(R.drawable.);
         miToolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(miToolbar);
-
+        container = findViewById(R.id.fragmentContainerMain);
         loadFragment(new FragmentViewPagerProductos(), KEY_FRAGMENT_VIEWPAGERCOMPRAVENTA);
-        textViewTotal = findViewById(R.id.textViewTotalPrice);
     }
 
     private void loadFragment(Fragment fragment, String tag) {
@@ -54,10 +63,10 @@ public class MainActivity extends AppCompatActivity implements AdapterRecyclerPr
     }
 
     @Override
-    public void goToDetail(String idProducto) {
+    public void goToDetail(Integer idProducto) {
         FragmentProductDetail fragmentProductDetail = new FragmentProductDetail();
         Bundle bundle = new Bundle();
-        bundle.putString(FragmentProductDetail.KEY_IDPRODUCTO, idProducto);
+        bundle.putInt(FragmentProductDetail.KEY_IDPRODUCTO, idProducto);
         fragmentProductDetail.setArguments(bundle);
         loadFragment(fragmentProductDetail, KEY_FRAGMENT_PRODUCTDETAIL);
     }
@@ -97,5 +106,28 @@ public class MainActivity extends AppCompatActivity implements AdapterRecyclerPr
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void agregarPedido(Pedido pedido, List<PedidoDetalle> pedidoDetalles) {
+        long idPedido = PedidoController.insertPedido(this, pedido);
+        for (PedidoDetalle pedidoDetalle:pedidoDetalles) {
+            pedidoDetalle.setIdPedido((int)(long)idPedido);
+        }
+        agregarDetallePedido(pedidoDetalles);
+    }
+
+    public void agregarDetallePedido(List<PedidoDetalle> pedidoDetalles) {
+        PedidoDetalleController.insertDetallesPedido(this, pedidoDetalles);
+        Snackbar.make(container,"PEDIDO AGREGADO",Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void pedidoSeleccionado(Integer idPedido) {
+        FragmentRecyclerDetallePedido fragmentRecyclerDetallePedido = new FragmentRecyclerDetallePedido();
+        Bundle bundle = new Bundle();
+        bundle.putInt(FragmentRecyclerDetallePedido.ID_PEDIDO, idPedido);
+        fragmentRecyclerDetallePedido.setArguments(bundle);
+        loadFragment(fragmentRecyclerDetallePedido,KEY_FRAGMENT_DETALLESPEDIDOS);
     }
 }

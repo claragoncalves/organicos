@@ -19,8 +19,8 @@ public class PedidoController {
         return DBSingleton.getInstance(context).pedidoDao().getPedido(idPedido);
     }
 
-    public static void insertPedido(Context context, Pedido pedido){
-        DBSingleton.getInstance(context).pedidoDao().insertPedido(pedido);
+    public static long insertPedido(Context context, Pedido pedido){
+        return DBSingleton.getInstance(context).pedidoDao().insertPedido(pedido);
     }
 
     public static void deletePedido(Context context, Pedido pedido){

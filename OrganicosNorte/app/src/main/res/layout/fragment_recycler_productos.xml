@@ -10,6 +10,11 @@
         android:layout_height="0dp"
         android:layout_weight="100"
         android:id="@+id/recyclerProductos"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonGuardarPedido"
+        android:text="Guardar Pedido"/>
     <TextView
         android:background="@color/colorAccent"
         android:padding="10dp"

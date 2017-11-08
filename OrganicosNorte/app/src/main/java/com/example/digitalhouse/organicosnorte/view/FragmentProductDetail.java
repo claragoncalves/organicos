@@ -33,7 +33,7 @@ public class FragmentProductDetail extends Fragment {
 
         Bundle bundle = getArguments();
 
-        producto = ProductoController.getProduct(getContext(), bundle.getString(KEY_IDPRODUCTO));
+        producto = ProductoController.getProduct(getContext(), bundle.getInt(KEY_IDPRODUCTO));
 
         editTextTitle = view.findViewById(R.id.textViewDetailTitle);
         editTextTitle.setText(producto.getNombre());
@@ -58,7 +58,7 @@ public class FragmentProductDetail extends Fragment {
             @Override
             public void onClick(View view) {
                 productModification = (ProductModification) getContext();
-                productModification.modifyProduct(bindProductModification());
+                productModification.modifyProduct(bindProductModification(producto.getId()));
             }
         });
         return view;
@@ -69,9 +69,8 @@ public class FragmentProductDetail extends Fragment {
         public void modifyProduct(Producto producto);
     }
 
-    public Producto bindProductModification(){
-        Producto productBinded = new Producto(editTextTitle.getText().toString(), editTextDescription.getText().toString(), Double.parseDouble(editTextPrecioCompra.getText().toString()), Double.parseDouble(editTextPrecioVenta.getText().toString()));
-        productBinded.setId(producto.getId());
+    public Producto bindProductModification(Integer idProducto){
+        Producto productBinded = new Producto(idProducto, editTextTitle.getText().toString(), editTextDescription.getText().toString(), Double.parseDouble(editTextPrecioCompra.getText().toString()), Double.parseDouble(editTextPrecioVenta.getText().toString()));
         return productBinded;
     }
 }

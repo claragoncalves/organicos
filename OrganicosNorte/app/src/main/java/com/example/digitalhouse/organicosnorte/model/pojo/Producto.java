@@ -12,10 +12,10 @@ import java.util.Date;
 /**
  * Created by digitalhouse on 10/26/17.
  */
-@Entity
+@Entity(tableName = "productos")
 public class Producto {
-    @PrimaryKey @NonNull
-    private String id;
+    @PrimaryKey (autoGenerate = true)
+    private Integer id;
     @ColumnInfo(name = "nombre")
     private String nombre;
     @ColumnInfo(name = "descripcion")
@@ -27,29 +27,49 @@ public class Producto {
     @Ignore
     private Integer quantity;
 
-    public Producto(String nombre, String descripcion, Double precioCompra, Double precioVenta) {
-        this.id = Long.toString(new Date().getTime());
+    public Producto(Integer id, String nombre, String descripcion, Double precioCompra, Double precioVenta) {
+        this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
-        quantity = 0;
+        this.quantity = 0;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public Integer getId() {
+        return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Double getPrecioCompra() {
+        return precioCompra;
+    }
+
     public void setPrecioCompra(Double precioCompra) {
         this.precioCompra = precioCompra;
+    }
+
+    public Double getPrecioVenta() {
+        return precioVenta;
     }
 
     public void setPrecioVenta(Double precioVenta) {
@@ -62,25 +82,5 @@ public class Producto {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public Double getPrecioCompra() {
-        return precioCompra;
-    }
-
-    public Double getPrecioVenta() {
-        return precioVenta;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
     }
 }

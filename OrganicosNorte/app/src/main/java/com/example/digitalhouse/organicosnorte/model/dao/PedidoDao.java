@@ -13,14 +13,14 @@ import java.util.List;
 @Dao
 public interface PedidoDao {
 
-    @Query("SELECT * FROM pedido")
+    @Query("SELECT * FROM pedidos")
     List<Pedido> getAll();
 
-    @Query("SELECT * FROM pedido WHERE id = :idPedido")
+    @Query("SELECT * FROM pedidos WHERE id = :idPedido")
     Pedido getPedido(String idPedido);
 
     @Insert
-    void insertPedido(Pedido pedido);
+    long insertPedido(Pedido pedido);
 
     @Delete
     void deletePedido(Pedido pedido);

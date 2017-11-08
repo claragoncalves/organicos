@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="db-framework-1.0.0-rc1">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/db-framework-1.0.0-rc1.aar/cda6ac47fcfcf6c6d548b3733f3b161b/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/db-framework-1.0.0-rc1.aar/cda6ac47fcfcf6c6d548b3733f3b161b/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/db-framework-1.0.0-rc1.aar/cb3ad8eb70c9b14be733af92d815c607/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/db-framework-1.0.0-rc1.aar/cb3ad8eb70c9b14be733af92d815c607/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

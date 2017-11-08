@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.digitalhouse.organicosnorte.model.pojo.Categoria;
+import com.example.digitalhouse.organicosnorte.view.FragmentRecyclerPedidos;
 import com.example.digitalhouse.organicosnorte.view.FragmentRecyclerProductos;
 
 import java.util.ArrayList;
@@ -15,26 +16,28 @@ import java.util.List;
  */
 
 public class AdapterViewPagerProductos extends FragmentStatePagerAdapter {
-    List<FragmentRecyclerProductos> fragmentRecyclerProductosList;
+    List<Fragment> fragments;
     List<Categoria> categorias;
 
     public AdapterViewPagerProductos(FragmentManager fm, List<Categoria> categorias) {
         super(fm);
-        fragmentRecyclerProductosList = new ArrayList<>();
+        fragments = new ArrayList<>();
         this.categorias = categorias;
         for (Categoria categoria:categorias) {
-            fragmentRecyclerProductosList.add(FragmentRecyclerProductos.factory(categoria));
+            fragments.add(FragmentRecyclerProductos.factory(categoria));
         }
+        categorias.add(new Categoria("Pedidos"));
+        fragments.add(new FragmentRecyclerPedidos());
     }
 
     @Override
     public Fragment getItem(int position) {
-        return fragmentRecyclerProductosList.get(position);
+        return fragments.get(position);
     }
 
     @Override
     public int getCount() {
-        return fragmentRecyclerProductosList.size();
+        return fragments.size();
     }
 
     @Override

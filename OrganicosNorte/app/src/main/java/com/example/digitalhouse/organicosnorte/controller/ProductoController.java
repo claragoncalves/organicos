@@ -17,7 +17,7 @@ public class ProductoController {
         return DBSingleton.getInstance(context).productoDao().getAll();
     }
 
-    public static Producto getProduct(Context context, String idProducto){
+    public static Producto getProduct(Context context, Integer idProducto){
         return DBSingleton.getInstance(context).productoDao().getProduct(idProducto);
     }
 

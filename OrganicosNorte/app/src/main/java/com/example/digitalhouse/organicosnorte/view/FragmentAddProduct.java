@@ -65,6 +65,6 @@ public class FragmentAddProduct extends Fragment {
         if (textInputEditTextPrecioVenta.getText().toString().length()>0 && textInputEditTextPrecioVenta.getText().toString().contains(".")){
             precioVenta = Double.parseDouble(textInputEditTextPrecioVenta.getText().toString());
         }
-        return new Producto(nombre,descripcion,precioCompra,precioVenta);
+        return new Producto(null, nombre,descripcion,precioCompra,precioVenta);
     }
 }

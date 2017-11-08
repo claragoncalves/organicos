@@ -15,11 +15,11 @@ import java.util.List;
  */
 @Dao
 public interface ProductoDao {
-    @Query("SELECT * FROM producto")
+    @Query("SELECT * FROM productos")
     List<Producto> getAll();
 
-    @Query("SELECT * FROM producto WHERE id = :idProducto")
-    Producto getProduct(String idProducto);
+    @Query("SELECT * FROM productos WHERE id = :idProducto")
+    Producto getProduct(Integer idProducto);
 
     @Insert
     void insertProduct(Producto producto);

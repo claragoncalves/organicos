@@ -12,9 +12,11 @@ import android.widget.TextView;
 
 import com.example.digitalhouse.organicosnorte.R;
 import com.example.digitalhouse.organicosnorte.controller.ProductoController;
+import com.example.digitalhouse.organicosnorte.model.pojo.PedidoDetalle;
 import com.example.digitalhouse.organicosnorte.model.pojo.Producto;
 import com.example.digitalhouse.organicosnorte.view.FragmentViewPagerProductos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,6 +34,10 @@ public class AdapterRecyclerProductos extends RecyclerView.Adapter<AdapterRecycl
         tapAction = (TapAction) context;
         this.categoryName = categoryName;
         this.sumInterface = sumInterface;
+    }
+
+    public List<Producto> getListaDeProductos() {
+        return listaDeProductos;
     }
 
     @Override
@@ -110,7 +116,7 @@ public class AdapterRecyclerProductos extends RecyclerView.Adapter<AdapterRecycl
     }
 
     public interface TapAction{
-        public void goToDetail(String idProducto);
+        public void goToDetail(Integer idProducto);
     }
 
     public interface SumInterface{
