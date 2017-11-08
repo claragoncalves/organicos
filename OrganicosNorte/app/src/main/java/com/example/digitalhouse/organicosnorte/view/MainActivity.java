@@ -70,6 +70,12 @@ public class MainActivity extends AppCompatActivity implements AdapterRecyclerPr
     }
 
     @Override
+    public void modifyProduct(Producto producto) {
+        ProductoController.modifyProduct(this,producto);
+        loadFragment(new FragmentViewPagerProductos(), KEY_FRAGMENT_VIEWPAGERCOMPRAVENTA);
+    }
+
+    @Override
     public void addProduct(Producto producto) {
         ProductoController.insertProduct(this, producto);
         loadFragment(new FragmentViewPagerProductos(), KEY_FRAGMENT_VIEWPAGERCOMPRAVENTA);

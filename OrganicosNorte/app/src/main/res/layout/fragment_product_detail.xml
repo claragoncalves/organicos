@@ -1,12 +1,44 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
     tools:context="com.example.digitalhouse.organicosnorte.view.FragmentProductDetail">
-
-
-
-
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewDetailTitle"
+        android:fontFamily="@font/open_sans"
+        android:textSize="20dp"
+        android:layout_marginBottom="20dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewDetailDescripcion"
+        android:fontFamily="@font/open_sans"
+        android:textSize="18dp"
+        android:layout_marginBottom="20dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="50"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewDetailPrecioCompra"
+            android:fontFamily="@font/open_sans"
+            android:textSize="18dp"/>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="50"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewDetailPrecioVenta"
+            android:fontFamily="@font/open_sans"
+            android:textSize="18dp"/>
+    </LinearLayout>
     <Button
         style="@style/Base.Widget.AppCompat.Button.Borderless"
         android:layout_width="match_parent"
@@ -14,5 +46,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/buttonEraseProduct"
         android:text="Eliminar producto"/>
-
-</FrameLayout>
+    <Button
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:layout_width="match_parent"
+        android:background="@color/primary_light"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonModifyProduct"
+        android:text="Guardar producto"/>
+</LinearLayout>
