@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.digitalhouse.organicosnorte.adapter.AdapterRecyclerProductos;
@@ -60,7 +61,7 @@ public class FragmentRecyclerProductos extends Fragment implements AdapterRecycl
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapterRecyclerProductos);
 
-        Button buttonGuardarPedido = view.findViewById(R.id.buttonGuardarPedido);
+        ImageButton buttonGuardarPedido = view.findViewById(R.id.buttonGuardarPedido);
         buttonGuardarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

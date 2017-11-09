@@ -54,9 +54,15 @@ public class AdapterRecyclerDetallesPedido extends RecyclerView.Adapter<AdapterR
 
         public void bindDetallePedido(PedidoDetalle pedidoDetalle){
             Producto producto = ProductoController.getProduct(itemView.getContext(),pedidoDetalle.getIdProducto());
-            textViewNombreProducto.setText(producto.getNombre());
-            textViewDetalleProducto.setText(producto.getDescripcion());
-            textViewCantidad.setText(pedidoDetalle.getCantidad().toString());
+            if (producto!=null) {
+                textViewNombreProducto.setText(producto.getNombre());
+                textViewDetalleProducto.setText(producto.getDescripcion());
+                textViewCantidad.setText(pedidoDetalle.getCantidad().toString());
+            }else {
+                textViewNombreProducto.setText("Producto eliminado");
+                textViewDetalleProducto.setText("");
+                textViewCantidad.setText("");
+            }
         }
     }
 }

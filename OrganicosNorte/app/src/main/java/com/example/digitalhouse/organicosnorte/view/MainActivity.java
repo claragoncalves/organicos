@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements AdapterRecyclerPr
         setContentView(R.layout.activity_main);
         Toolbar miToolbar = findViewById(R.id.toolbarAct1);
         miToolbar.setTitle("Organicos Norte");
-        //miToolbar.setNavigationIcon(R.drawable.);
+        miToolbar.setNavigationIcon(R.mipmap.ic_launcher_kalena);
         miToolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(miToolbar);
         container = findViewById(R.id.fragmentContainerMain);
