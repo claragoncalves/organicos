@@ -27,6 +27,7 @@ public class ProductoController {
 
     public static void deleteProduct(Context context, Producto producto){
         DBSingleton.getInstance(context).productoDao().deleteProduct(producto);
+        DBSingleton.getInstance(context).pedidoDetalleDao().deleteProductoFromPedido(producto.getId());
     }
 
     public static void modifyProduct(Context context, Producto producto){

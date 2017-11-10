@@ -17,10 +17,21 @@ public class Pedido {
     private Integer id;
     @ColumnInfo(name = "nombre")
     private String nombre;
+    @ColumnInfo(name = "fecha")
+    private String fecha;
 
     public Pedido(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
+        this.fecha = new Date().toString();
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
     public Integer getId() {

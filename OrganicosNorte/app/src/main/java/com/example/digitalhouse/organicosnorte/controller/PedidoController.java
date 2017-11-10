@@ -15,7 +15,7 @@ public class PedidoController {
         return DBSingleton.getInstance(context).pedidoDao().getAll();
     }
 
-    public static Pedido getPedido(Context context, String idPedido){
+    public static Pedido getPedido(Context context, Integer idPedido){
         return DBSingleton.getInstance(context).pedidoDao().getPedido(idPedido);
     }
 
@@ -24,6 +24,7 @@ public class PedidoController {
     }
 
     public static void deletePedido(Context context, Pedido pedido){
+        DBSingleton.getInstance(context).pedidoDetalleDao().deleteAllDetallesPedidosFromPedido(pedido.getId());
         DBSingleton.getInstance(context).pedidoDao().deletePedido(pedido);
     }
 }

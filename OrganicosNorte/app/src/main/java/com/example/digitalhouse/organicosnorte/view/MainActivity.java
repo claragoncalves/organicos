@@ -28,7 +28,7 @@ import com.example.digitalhouse.organicosnorte.model.pojo.Producto;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements AdapterRecyclerProductos.TapAction, FragmentAddProduct.AddProduct, FragmentProductDetail.ProductModification, FragmentRecyclerProductos.PedidoAddListener, AdapterRecyclerPedidos.PedidoTapped {
+public class MainActivity extends AppCompatActivity implements AdapterRecyclerProductos.TapAction, FragmentAddProduct.AddProduct, FragmentProductDetail.ProductModification, FragmentRecyclerProductos.PedidoAddListener, AdapterRecyclerPedidos.PedidoTapped,FragmentRecyclerDetallePedido.DeletePedido {
 
     private static final String KEY_FRAGMENT_VIEWPAGERCOMPRAVENTA = "fragmentViewPagerCompraVenta";
     private static final String KEY_FRAGMENT_ADDPRODUCT = "fragmentAddProduct";
@@ -129,5 +129,11 @@ public class MainActivity extends AppCompatActivity implements AdapterRecyclerPr
         bundle.putInt(FragmentRecyclerDetallePedido.ID_PEDIDO, idPedido);
         fragmentRecyclerDetallePedido.setArguments(bundle);
         loadFragment(fragmentRecyclerDetallePedido,KEY_FRAGMENT_DETALLESPEDIDOS);
+    }
+
+    @Override
+    public void deletePedido(Integer idPedido) {
+        PedidoController.deletePedido(this,PedidoController.getPedido(this,idPedido));
+        getSupportFragmentManager().popBackStack();
     }
 }

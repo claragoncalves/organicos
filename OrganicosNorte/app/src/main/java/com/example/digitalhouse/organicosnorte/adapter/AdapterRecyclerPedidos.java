@@ -10,6 +10,9 @@ import android.widget.TextView;
 import com.example.digitalhouse.organicosnorte.R;
 import com.example.digitalhouse.organicosnorte.model.pojo.Pedido;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,14 +52,17 @@ public class AdapterRecyclerPedidos extends RecyclerView.Adapter<AdapterRecycler
 
     public class PedidoViewHolder extends RecyclerView.ViewHolder{
         TextView textViewNombrePedido;
+        TextView textViewFechaPedido;
 
         public PedidoViewHolder(View itemView) {
             super(itemView);
             textViewNombrePedido = itemView.findViewById(R.id.textViewCellNombrePedido);
+            textViewFechaPedido = itemView.findViewById(R.id.textViewCellFechaPedido);
         }
 
         public void bindPedido(Pedido pedido){
             textViewNombrePedido.setText(pedido.getNombre());
+            textViewFechaPedido.setText(pedido.getFecha().toString());
         }
     }
 

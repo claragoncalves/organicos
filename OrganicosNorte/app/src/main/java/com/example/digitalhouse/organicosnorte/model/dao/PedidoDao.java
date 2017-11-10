@@ -17,7 +17,7 @@ public interface PedidoDao {
     List<Pedido> getAll();
 
     @Query("SELECT * FROM pedidos WHERE id = :idPedido")
-    Pedido getPedido(String idPedido);
+    Pedido getPedido(Integer idPedido);
 
     @Insert
     long insertPedido(Pedido pedido);

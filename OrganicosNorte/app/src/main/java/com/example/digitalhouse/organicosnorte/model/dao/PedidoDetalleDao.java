@@ -22,6 +22,12 @@ public interface PedidoDetalleDao {
     @Insert
     void insertPedido(List<PedidoDetalle> pedidoDetalles);
 
-    @Delete
-    void deletePedido(PedidoDetalle pedidoDetalle);
+    @Query("DELETE FROM pedido_detalles WHERE idPedido = :idPedido")
+    void deleteAllDetallesPedidosFromPedido(Integer idPedido);
+
+    @Query("DELETE FROM pedido_detalles WHERE idProducto = :idProducto")
+    void deleteProductoFromPedido(Integer idProducto);
+
+    /*@Query("SELECT * FROM productos WHERE ")
+    void selectTotalPrice();*/
 }
