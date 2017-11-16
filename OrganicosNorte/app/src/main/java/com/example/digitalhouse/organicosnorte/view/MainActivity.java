@@ -26,6 +26,7 @@ import com.example.digitalhouse.organicosnorte.model.pojo.Pedido;
 import com.example.digitalhouse.organicosnorte.model.pojo.PedidoDetalle;
 import com.example.digitalhouse.organicosnorte.model.pojo.Producto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterRecyclerProductos.TapAction, FragmentAddProduct.AddProduct, FragmentProductDetail.ProductModification, FragmentRecyclerProductos.PedidoAddListener, AdapterRecyclerPedidos.PedidoTapped,FragmentRecyclerDetallePedido.DeletePedido {
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements AdapterRecyclerPr
         miToolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(miToolbar);
         container = findViewById(R.id.fragmentContainerMain);
+        //cargarProductos();
         loadFragment(new FragmentViewPagerProductos(), KEY_FRAGMENT_VIEWPAGERCOMPRAVENTA);
     }
 
@@ -135,5 +137,21 @@ public class MainActivity extends AppCompatActivity implements AdapterRecyclerPr
     public void deletePedido(Integer idPedido) {
         PedidoController.deletePedido(this,PedidoController.getPedido(this,idPedido));
         getSupportFragmentManager().popBackStack();
+    }
+
+    public void cargarProductos(){
+        List<Producto> productos = new ArrayList<>();
+        productos.add(new Producto(null,"Yerba Kalena", "Pack 12 x 500gr", 360.0,440.0));
+        productos.add(new Producto(null, "Yerba Kalena", "Pack 5 x 2kg", 570.0,696.0));
+        productos.add(new Producto(null,"Yerba Kalena", "Granel x 12kg", 504.0, 672.0 ));
+        productos.add(new Producto(null,"Azucar Balajú", "Bolsa x 10kg", 350.0, 480.0 ));
+        productos.add(new Producto(null,"Azucar Balajú", "Pack 24 x 500gr", 480.0, 625.0 ));
+        productos.add(new Producto(null,"Azucar Balajú", "Bolsa x 5kg", 175.0, 240.0 ));
+        productos.add(new Producto(null,"Té Kalena Boldo", "20 cajas x 24 saquitos", 400.0, 513.0 ));
+        productos.add(new Producto(null,"Té Kalena Rojo, Verde, Manzanilla", "20 cajas x 24 saquitos", 340.0, 432.0 ));
+
+        for (Producto producto:productos) {
+            addProduct(producto);
+        }
     }
 }
