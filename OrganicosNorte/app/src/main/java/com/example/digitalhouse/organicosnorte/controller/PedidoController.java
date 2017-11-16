@@ -19,6 +19,10 @@ public class PedidoController {
         return DBSingleton.getInstance(context).pedidoDao().getPedido(idPedido);
     }
 
+    public static Pedido getPedidoByName(Context context, String nombrePedido){
+        return DBSingleton.getInstance(context).pedidoDao().getPedidoByName(nombrePedido);
+    }
+
     public static long insertPedido(Context context, Pedido pedido){
         return DBSingleton.getInstance(context).pedidoDao().insertPedido(pedido);
     }

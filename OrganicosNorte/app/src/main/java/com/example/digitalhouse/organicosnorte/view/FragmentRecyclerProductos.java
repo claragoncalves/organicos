@@ -10,14 +10,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.digitalhouse.organicosnorte.adapter.AdapterRecyclerProductos;
 import com.example.digitalhouse.organicosnorte.R;
+import com.example.digitalhouse.organicosnorte.controller.PedidoController;
 import com.example.digitalhouse.organicosnorte.controller.ProductoController;
 import com.example.digitalhouse.organicosnorte.model.pojo.Categoria;
 import com.example.digitalhouse.organicosnorte.model.pojo.DBSingleton;
@@ -87,13 +90,22 @@ public class FragmentRecyclerProductos extends Fragment implements AdapterRecycl
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        EditText editText = ((AlertDialog) dialog).findViewById(R.id.editTextDialogPedidoTitle);
-                        RadioGroup radioGroup = ((AlertDialog) dialog).findViewById(R.id.radioGroupCompraVenta);
-                        Boolean compraVente = R.id.radioButtonVenta == radioGroup.getCheckedRadioButtonId();
                         pedidoAddListener = (PedidoAddListener) getContext();
+                        EditText editText = ((AlertDialog) dialog).findViewById(R.id.editTextDialogPedidoTitle);
+
+                        if (!editText.getText().toString().equals("")){
+                        RadioGroup radioGroup = ((AlertDialog) dialog).findViewById(R.id.radioGroupCompraVenta);
+                        Boolean compraVenta = R.id.radioButtonVenta == radioGroup.getCheckedRadioButtonId();
                         Pedido pedido = new Pedido(null, editText.getText().toString());
-                        pedido.setCompraVenta(compraVente);
+                        pedido.setCompraVenta(compraVenta);
                         pedidoAddListener.agregarPedido(pedido, getListaDeProductosAsDetalles());
+                        }else {
+                            Spinner s = ((AlertDialog) dialog).findViewById(R.id.dropDownPedidos);
+                            String nombrePedido = (String) s.getSelectedItem();
+                            pedidoAddListener.modificarPedido(nombrePedido,getListaDeProductosAsDetalles());
+                        }
+
+
                     }
                 })
                 .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
@@ -101,15 +113,27 @@ public class FragmentRecyclerProductos extends Fragment implements AdapterRecycl
                     public void onClick(DialogInterface dialog, int id) {
                     }
                 });
+        List<String> pedidos = new ArrayList<>();
+        for (Pedido elPedido:PedidoController.getAll(getContext())) {
+            pedidos.add(elPedido.getNombre());
+        }
 
         AlertDialog dialog = builder.create();
+
         dialog.show();
+
+        Spinner s = dialog.findViewById(R.id.dropDownPedidos);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+                android.R.layout.simple_spinner_dropdown_item, pedidos);
+        s.setAdapter(adapter);
 
     }
 
 
     public interface PedidoAddListener{
         public void agregarPedido(Pedido pedido, List<PedidoDetalle> pedidoDetalles);
+        public void modificarPedido(String nombrePedido, List<PedidoDetalle> pedidoDetalles);
+
     }
 
 

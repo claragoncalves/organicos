@@ -6,4 +6,8 @@
     <string name="minus">-</string>
     <string name="plus">+</string>
     <string name="total_price">Total</string>
+    <string name="nombre_cliente">Nombre cliente</string>
+    <string name="compra">Compra</string>
+    <string name="venta">Venta</string>
+    <string name="agregar_existente">Agregar a pedido existente:</string>
 </resources>

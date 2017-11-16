@@ -16,14 +16,14 @@
             android:id="@+id/containerProductCellInfo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="60"
+            android:layout_weight="50"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textViewCellProductName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="10sp"
                 android:fontFamily="@font/open_sans"
                 android:textSize="20dp"
                 />
@@ -43,7 +43,7 @@
             android:gravity="center_vertical"
             android:layout_height="match_parent"
             android:textColor="@color/colorPrimary"
-            android:textSize="20dp"
+            android:textSize="18sp"
             android:textAlignment="center"
             android:fontFamily="@font/open_sans_semibold" />
         <LinearLayout

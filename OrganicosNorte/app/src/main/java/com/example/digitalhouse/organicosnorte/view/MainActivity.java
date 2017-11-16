@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements AdapterRecyclerPr
         miToolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(miToolbar);
         container = findViewById(R.id.fragmentContainerMain);
-        //cargarProductos();
+        cargarProductos();
         loadFragment(new FragmentViewPagerProductos(), KEY_FRAGMENT_VIEWPAGERCOMPRAVENTA);
     }
 
@@ -115,6 +115,15 @@ public class MainActivity extends AppCompatActivity implements AdapterRecyclerPr
         long idPedido = PedidoController.insertPedido(this, pedido);
         for (PedidoDetalle pedidoDetalle:pedidoDetalles) {
             pedidoDetalle.setIdPedido((int)(long)idPedido);
+        }
+        agregarDetallePedido(pedidoDetalles);
+    }
+
+    @Override
+    public void modificarPedido(String nombrePedido, List<PedidoDetalle> pedidoDetalles) {
+        Pedido pedido = PedidoController.getPedidoByName(this, nombrePedido);
+        for (PedidoDetalle pedidoDetalle:pedidoDetalles) {
+            pedidoDetalle.setIdPedido((int)(long)pedido.getId());
         }
         agregarDetallePedido(pedidoDetalles);
     }

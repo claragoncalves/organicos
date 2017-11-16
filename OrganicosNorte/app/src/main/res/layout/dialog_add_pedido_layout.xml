@@ -7,6 +7,7 @@
     android:inputType="textCapSentences"
     android:layout_margin="20dp"
     android:layout_width="match_parent"
+    android:hint="@string/nombre_cliente"
     android:layout_height="wrap_content"
     android:id="@+id/editTextDialogPedidoTitle"/>
 
@@ -18,16 +19,31 @@
         android:id="@+id/radioGroupCompraVenta">
         <RadioButton
             android:checked="true"
-            android:text="Compra"
+            android:text="@string/compra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
             android:id="@+id/radioButtonCompra"/>
         <RadioButton
-            android:text="Venta"
-            android:layout_margin="5dp"
+            android:layout_marginLeft="5dp"
+            android:text="@string/venta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/radioButtonVenta"/>
     </RadioGroup>
+
+    <View
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/primary_text"/>
+    <TextView
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/agregar_existente"/>
+    <android.support.v7.widget.AppCompatSpinner
+        android:layout_margin="20dp"
+        android:id="@+id/dropDownPedidos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

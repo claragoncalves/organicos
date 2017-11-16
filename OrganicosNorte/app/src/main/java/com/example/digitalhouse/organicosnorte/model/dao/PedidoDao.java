@@ -19,6 +19,9 @@ public interface PedidoDao {
     @Query("SELECT * FROM pedidos WHERE id = :idPedido")
     Pedido getPedido(Integer idPedido);
 
+    @Query("SELECT * FROM pedidos WHERE nombre = :nombrePedido LIMIT 1")
+    Pedido getPedidoByName(String nombrePedido);
+
     @Insert
     long insertPedido(Pedido pedido);
 
