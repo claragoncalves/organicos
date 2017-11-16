@@ -9,4 +9,25 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/editTextDialogPedidoTitle"/>
+
+    <RadioGroup
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/radioGroupCompraVenta">
+        <RadioButton
+            android:checked="true"
+            android:text="Compra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:id="@+id/radioButtonCompra"/>
+        <RadioButton
+            android:text="Venta"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButtonVenta"/>
+    </RadioGroup>
 </LinearLayout>

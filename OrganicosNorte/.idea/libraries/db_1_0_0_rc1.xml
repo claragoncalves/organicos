@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="db-1.0.0-rc1">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/db-1.0.0-rc1.aar/1d14d879db42878d90edea3fb58a1826/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/db-1.0.0-rc1.aar/1d14d879db42878d90edea3fb58a1826/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/db-1.0.0-rc1.aar/0c2d2df1c656ab6ee9dee401a19a07ba/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/db-1.0.0-rc1.aar/0c2d2df1c656ab6ee9dee401a19a07ba/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

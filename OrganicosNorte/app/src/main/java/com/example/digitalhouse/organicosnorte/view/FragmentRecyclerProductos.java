@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.digitalhouse.organicosnorte.adapter.AdapterRecyclerProductos;
@@ -87,8 +88,11 @@ public class FragmentRecyclerProductos extends Fragment implements AdapterRecycl
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         EditText editText = ((AlertDialog) dialog).findViewById(R.id.editTextDialogPedidoTitle);
+                        RadioGroup radioGroup = ((AlertDialog) dialog).findViewById(R.id.radioGroupCompraVenta);
+                        Boolean compraVente = R.id.radioButtonVenta == radioGroup.getCheckedRadioButtonId();
                         pedidoAddListener = (PedidoAddListener) getContext();
                         Pedido pedido = new Pedido(null, editText.getText().toString());
+                        pedido.setCompraVenta(compraVente);
                         pedidoAddListener.agregarPedido(pedido, getListaDeProductosAsDetalles());
                     }
                 })

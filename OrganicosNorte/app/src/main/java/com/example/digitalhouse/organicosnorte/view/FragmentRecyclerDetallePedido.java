@@ -15,6 +15,7 @@ import com.example.digitalhouse.organicosnorte.R;
 import com.example.digitalhouse.organicosnorte.adapter.AdapterRecyclerDetallesPedido;
 import com.example.digitalhouse.organicosnorte.controller.PedidoController;
 import com.example.digitalhouse.organicosnorte.controller.PedidoDetalleController;
+import com.example.digitalhouse.organicosnorte.controller.ProductoController;
 import com.example.digitalhouse.organicosnorte.model.pojo.PedidoDetalle;
 
 import java.util.List;
@@ -51,7 +52,16 @@ public class FragmentRecyclerDetallePedido extends Fragment {
 
 
         TextView textView = view.findViewById(R.id.recyclerDetallesPedidosTextViewTotalPrice);
-        //textView.setText();
+        Double totalPrice = 0.0;
+        for (PedidoDetalle pedidoDetalle:detallesPedido) {
+            if (PedidoController.getPedido(getContext(), bundle.getInt(ID_PEDIDO)).getCompraVenta()) {
+                totalPrice = totalPrice + ProductoController.getProduct(getContext(), pedidoDetalle.getIdProducto()).getPrecioVenta() * pedidoDetalle.getCantidad();
+            }else{
+                totalPrice = totalPrice + ProductoController.getProduct(getContext(), pedidoDetalle.getIdProducto()).getPrecioCompra() * pedidoDetalle.getCantidad();
+            }
+        }
+
+        textView.setText("Precio: " + totalPrice.toString());
         return view;
     }
 

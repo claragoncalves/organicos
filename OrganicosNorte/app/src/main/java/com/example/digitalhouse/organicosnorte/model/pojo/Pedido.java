@@ -19,11 +19,22 @@ public class Pedido {
     private String nombre;
     @ColumnInfo(name = "fecha")
     private String fecha;
+    @ColumnInfo(name = "boolean_compra_venta")
+    private Boolean compraVenta;
 
     public Pedido(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
         this.fecha = new Date().toString();
+        this.compraVenta = false;
+    }
+
+    public Boolean getCompraVenta() {
+        return compraVenta;
+    }
+
+    public void setCompraVenta(Boolean compraVenta) {
+        this.compraVenta = compraVenta;
     }
 
     public String getFecha() {

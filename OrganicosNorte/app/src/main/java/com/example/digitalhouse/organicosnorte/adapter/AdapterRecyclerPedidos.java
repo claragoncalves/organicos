@@ -53,16 +53,24 @@ public class AdapterRecyclerPedidos extends RecyclerView.Adapter<AdapterRecycler
     public class PedidoViewHolder extends RecyclerView.ViewHolder{
         TextView textViewNombrePedido;
         TextView textViewFechaPedido;
+        TextView textViewTipoPedido;
 
         public PedidoViewHolder(View itemView) {
             super(itemView);
             textViewNombrePedido = itemView.findViewById(R.id.textViewCellNombrePedido);
             textViewFechaPedido = itemView.findViewById(R.id.textViewCellFechaPedido);
+            textViewTipoPedido = itemView.findViewById(R.id.textViewCellPedidoCompraVenta);
         }
 
         public void bindPedido(Pedido pedido){
-            textViewNombrePedido.setText(pedido.getNombre());
+            if (pedido.getCompraVenta()){
+                textViewTipoPedido.setText("VENTA");
+            }else {
+                textViewTipoPedido.setText("COMPRA");
+            }
             textViewFechaPedido.setText(pedido.getFecha().toString());
+            textViewNombrePedido.setText(pedido.getNombre());
+
         }
     }
 
