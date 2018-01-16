@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements AdapterRecyclerPr
         miToolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(miToolbar);
         container = findViewById(R.id.fragmentContainerMain);
-        cargarProductos();
+        //cargarProductos();
         loadFragment(new FragmentViewPagerProductos(), KEY_FRAGMENT_VIEWPAGERCOMPRAVENTA);
     }
 
