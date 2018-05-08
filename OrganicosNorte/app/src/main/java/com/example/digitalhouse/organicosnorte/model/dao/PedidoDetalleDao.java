@@ -16,7 +16,7 @@ import java.util.List;
 @Dao
 public interface PedidoDetalleDao {
 
-    @Query("SELECT * FROM pedido_detalles WHERE idPedido = :idPedido")
+    @Query("SELECT *, SUM(cantidad) as cantidad FROM pedido_detalles WHERE idPedido = :idPedido GROUP BY idProducto")
     List<PedidoDetalle> getProductosDePedido(Integer idPedido);
 
     @Insert
