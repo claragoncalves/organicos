@@ -17,6 +17,7 @@ import com.example.digitalhouse.organicosnorte.controller.PedidoController;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentRecyclerPedidos extends Fragment {
+    AdapterRecyclerPedidos adapterRecyclerPedidos;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -24,10 +25,10 @@ public class FragmentRecyclerPedidos extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_recycler_pedidos, container, false);
         RecyclerView recyclerViewPedidos = view.findViewById(R.id.recyclerPedidos);
-        AdapterRecyclerPedidos adapterRecyclerPedidos = new AdapterRecyclerPedidos(getContext(),PedidoController.getAll(getContext()));
+        adapterRecyclerPedidos = new AdapterRecyclerPedidos(getContext(),PedidoController.getAll(getContext()));
         recyclerViewPedidos.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         recyclerViewPedidos.setAdapter(adapterRecyclerPedidos);
+
         return view;
     }
-
 }

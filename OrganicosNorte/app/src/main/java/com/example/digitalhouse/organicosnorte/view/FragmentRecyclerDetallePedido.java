@@ -18,6 +18,7 @@ import com.example.digitalhouse.organicosnorte.controller.PedidoDetalleControlle
 import com.example.digitalhouse.organicosnorte.controller.ProductoController;
 import com.example.digitalhouse.organicosnorte.model.pojo.PedidoDetalle;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -25,12 +26,12 @@ import java.util.List;
  */
 public class FragmentRecyclerDetallePedido extends Fragment {
     public static final String ID_PEDIDO = "idPedido";
+    public static final String NOMBRE_PEDIDO = "nombrePedido";
     private DeletePedido deletePedido;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_recycler_detalle_pedido, container, false);
         final Bundle bundle = getArguments();
 
@@ -60,12 +61,15 @@ public class FragmentRecyclerDetallePedido extends Fragment {
                 totalPrice = totalPrice + ProductoController.getProduct(getContext(), pedidoDetalle.getIdProducto()).getPrecioCompra() * pedidoDetalle.getCantidad();
             }
         }
+        DecimalFormat df = new DecimalFormat("####0.00");
 
-        textView.setText("Precio: " + totalPrice.toString());
+        textView.setText("Precio: " + df.format(totalPrice));
         return view;
     }
 
     public interface DeletePedido{
         public void deletePedido(Integer idPedido);
     }
+
+
 }

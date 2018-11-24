@@ -12,6 +12,8 @@ import android.widget.Button;
 import com.example.digitalhouse.organicosnorte.R;
 import com.example.digitalhouse.organicosnorte.model.pojo.Producto;
 
+import java.text.DecimalFormat;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,6 +50,7 @@ public class FragmentAddProduct extends Fragment {
         String descripcion = "";
         Double precioCompra = 0.0;
         Double precioVenta = 0.0;
+
         TextInputEditText textInputEditTextNombre = view.findViewById(R.id.textInputNombre);
         TextInputEditText textInputEditTextDescripcion = view.findViewById(R.id.textInputDescripcion);
         TextInputEditText textInputEditTextPrecioCompra = view.findViewById(R.id.textInputPrecioCompra);
@@ -59,12 +62,21 @@ public class FragmentAddProduct extends Fragment {
         if (textInputEditTextDescripcion.getText().toString().length()>0){
             descripcion = textInputEditTextDescripcion.getText().toString();
         }
-        if (textInputEditTextPrecioCompra.getText().toString().length()>0 && textInputEditTextPrecioCompra.getText().toString().contains(".")){
-            precioCompra = Double.parseDouble(textInputEditTextPrecioCompra.getText().toString());
+        if (textInputEditTextPrecioCompra.getText().toString().length()>0){
+            if (textInputEditTextPrecioCompra.getText().toString().contains(".")) {
+                precioCompra = Double.parseDouble(textInputEditTextPrecioCompra.getText().toString());
+            }else {
+                precioCompra = Double.parseDouble(textInputEditTextPrecioCompra.getText().toString() + ".0");
+            }
         }
-        if (textInputEditTextPrecioVenta.getText().toString().length()>0 && textInputEditTextPrecioVenta.getText().toString().contains(".")){
-            precioVenta = Double.parseDouble(textInputEditTextPrecioVenta.getText().toString());
+        if (textInputEditTextPrecioVenta.getText().toString().length()>0){
+            if (textInputEditTextPrecioVenta.getText().toString().contains(".")) {
+                precioVenta = Double.parseDouble(textInputEditTextPrecioVenta.getText().toString());
+            }else{
+                precioVenta = Double.parseDouble(textInputEditTextPrecioVenta.getText().toString() + ".0");
+            }
         }
+
         return new Producto(null, nombre,descripcion,precioCompra,precioVenta);
     }
 }

@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">Organicos Norte</string>
+    <string name="app_name">PEPS</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="minus">-</string>
     <string name="plus">+</string>
     <string name="total_price">Total</string>
-    <string name="nombre_cliente">Nombre cliente</string>
+    <string name="nombre_cliente">Ingrese el nombre del pedido</string>
     <string name="compra">Compra</string>
     <string name="venta">Venta</string>
-    <string name="agregar_existente">Agregar a pedido existente:</string>
+    <string name="agregar_existente">.. o agregar productos a pedido existente:</string>
 </resources>

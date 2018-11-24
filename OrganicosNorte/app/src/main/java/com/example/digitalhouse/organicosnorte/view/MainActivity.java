@@ -10,11 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.digitalhouse.organicosnorte.adapter.AdapterRecyclerPedidos;
 import com.example.digitalhouse.organicosnorte.adapter.AdapterRecyclerProductos;
@@ -36,14 +32,14 @@ public class MainActivity extends AppCompatActivity implements AdapterRecyclerPr
     private static final String KEY_FRAGMENT_PRODUCTDETAIL = "fragmentProductDetail";
     private static final String KEY_FRAGMENT_DETALLESPEDIDOS = "fragmentDetallesPedidos";
     private FrameLayout container;
-
+    private Toolbar miToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar miToolbar = findViewById(R.id.toolbarAct1);
-        miToolbar.setTitle("Organicos Norte");
-        miToolbar.setNavigationIcon(R.mipmap.ic_launcher_kalena);
+        miToolbar = findViewById(R.id.toolbarAct1);
+        miToolbar.setTitle("PEPS");
+        //miToolbar.setNavigationIcon(R.mipmap.ic_launcher_kalena);
         miToolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(miToolbar);
         container = findViewById(R.id.fragmentContainerMain);
@@ -134,10 +130,12 @@ public class MainActivity extends AppCompatActivity implements AdapterRecyclerPr
     }
 
     @Override
-    public void pedidoSeleccionado(Integer idPedido) {
+    public void pedidoSeleccionado(Integer idPedido, String name) {
         FragmentRecyclerDetallePedido fragmentRecyclerDetallePedido = new FragmentRecyclerDetallePedido();
         Bundle bundle = new Bundle();
         bundle.putInt(FragmentRecyclerDetallePedido.ID_PEDIDO, idPedido);
+        bundle.putString(FragmentRecyclerDetallePedido.NOMBRE_PEDIDO, name);
+
         fragmentRecyclerDetallePedido.setArguments(bundle);
         loadFragment(fragmentRecyclerDetallePedido,KEY_FRAGMENT_DETALLESPEDIDOS);
     }
@@ -163,4 +161,5 @@ public class MainActivity extends AppCompatActivity implements AdapterRecyclerPr
             addProduct(producto);
         }
     }
+
 }

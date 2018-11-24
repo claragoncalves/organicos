@@ -1,6 +1,7 @@
 package com.example.digitalhouse.organicosnorte.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,11 +37,12 @@ public class AdapterRecyclerPedidos extends RecyclerView.Adapter<AdapterRecycler
 
     @Override
     public void onBindViewHolder(PedidoViewHolder holder, final int position) {
-        holder.bindPedido(pedidos.get(position));
+        final Pedido pedido = pedidos.get(position);
+        holder.bindPedido(pedido);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pedidoTapped.pedidoSeleccionado(pedidos.get(position).getId());
+                pedidoTapped.pedidoSeleccionado(pedido.getId(), pedido.getNombre());
             }
         });
     }
@@ -65,16 +67,18 @@ public class AdapterRecyclerPedidos extends RecyclerView.Adapter<AdapterRecycler
         public void bindPedido(Pedido pedido){
             if (pedido.getCompraVenta()){
                 textViewTipoPedido.setText("VENTA");
+                textViewTipoPedido.setTextColor(itemView.getContext().getResources().getColor(R.color.colorPrimaryDark));
             }else {
                 textViewTipoPedido.setText("COMPRA");
+                textViewTipoPedido.setTextColor(itemView.getContext().getResources().getColor(R.color.colorAccent));
             }
-            textViewFechaPedido.setText(pedido.getFecha().toString());
+            textViewFechaPedido.setText(pedido.getFecha());
             textViewNombrePedido.setText(pedido.getNombre());
 
         }
     }
 
     public interface PedidoTapped{
-        public void pedidoSeleccionado(Integer idPedido);
+        public void pedidoSeleccionado(Integer idPedido, String name);
     }
 }
