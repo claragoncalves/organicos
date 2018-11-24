@@ -5,7 +5,6 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -26,10 +25,7 @@ public class Pedido {
     public Pedido(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yy");
-        Date date = new Date();
-        this.fecha = simpleDateFormat.format(date);
-
+        this.fecha = new Date().toString();
         this.compraVenta = false;
     }
 

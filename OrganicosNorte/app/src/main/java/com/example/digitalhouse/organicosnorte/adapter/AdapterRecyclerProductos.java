@@ -3,16 +3,11 @@ package com.example.digitalhouse.organicosnorte.adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import com.example.digitalhouse.organicosnorte.R;
@@ -21,7 +16,6 @@ import com.example.digitalhouse.organicosnorte.model.pojo.PedidoDetalle;
 import com.example.digitalhouse.organicosnorte.model.pojo.Producto;
 import com.example.digitalhouse.organicosnorte.view.FragmentViewPagerProductos;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +49,33 @@ public class AdapterRecyclerProductos extends RecyclerView.Adapter<AdapterRecycl
     @Override
     public void onBindViewHolder(final ProductosViewHolder holder, final int position) {
         holder.bindProducto(listaDeProductos.get(position));
+        holder.productInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tapAction.goToDetail(listaDeProductos.get(position).getId());
+            }
+        });
+
+        holder.buttonMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (listaDeProductos.get(position).getQuantity()>0) {
+                    listaDeProductos.get(position).setQuantity(listaDeProductos.get(position).getQuantity() - 1);
+                    holder.textViewQuantity.setText(listaDeProductos.get(position).getQuantity().toString());
+                    sumInterface.quantityTapped(calculateTotal());
+                }
+            }
+        });
+
+        holder.buttonPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listaDeProductos.get(position).setQuantity(listaDeProductos.get(position).getQuantity()+1);
+                holder.textViewQuantity.setText(listaDeProductos.get(position).getQuantity().toString());
+                sumInterface.quantityTapped(calculateTotal());
+            }
+        });
+
     }
 
     @Override
@@ -65,62 +86,31 @@ public class AdapterRecyclerProductos extends RecyclerView.Adapter<AdapterRecycl
     public class ProductosViewHolder extends RecyclerView.ViewHolder{
         private TextView textViewNombre;
         private TextView textViewDescripcion;
+        private Button buttonMinus;
+        private Button buttonPlus;
+        private TextView textViewQuantity;
+        private LinearLayout productInfo;
         private TextView textViewPrice;
-        private DecimalFormat df;
-        private EditText editTextQuantity;
 
-        private ProductosViewHolder(final View itemView) {
+        private ProductosViewHolder(View itemView) {
             super(itemView);
             textViewNombre = itemView.findViewById(R.id.textViewCellProductName);
             textViewDescripcion = itemView.findViewById(R.id.textViewCellProductDescription);
+            textViewQuantity = itemView.findViewById(R.id.textViewCellProductQuantity);
+            productInfo = itemView.findViewById(R.id.containerProductCellInfo);
+            buttonMinus = itemView.findViewById(R.id.buttonCellMinus);
+            buttonPlus = itemView.findViewById(R.id.buttonCellPlus);
             textViewPrice = itemView.findViewById(R.id.textViewCellProductPrice);
-            editTextQuantity = itemView.findViewById(R.id.editTextCellProductQuantity);
-            df = new DecimalFormat("####0.00");
-
-            editTextQuantity.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                @Override
-                public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                    if (i == EditorInfo.IME_ACTION_DONE) {
-                        listaDeProductos.get(getAdapterPosition()).setQuantity(Integer.parseInt(editTextQuantity.getText().toString()));
-                        sumInterface.quantityTapped(calculateTotal());
-                        notifyDataSetChanged();
-                        InputMethodManager inputMethodManager = (InputMethodManager) itemView.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(editTextQuantity.getWindowToken(), 0);
-                        return true;
-                    }
-                    return false;
-                }
-            });
-
-            //todo cuando pierde foco calcular pero crashea
-//            editTextQuantity.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//                @Override
-//                public void onFocusChange(View view, boolean b) {
-//                    sumInterface.quantityTapped(calculateTotal());
-//                }
-//            });
-
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    tapAction.goToDetail(listaDeProductos.get(getAdapterPosition()).getId());
-                }
-            });
         }
 
         private void bindProducto(Producto producto){
             textViewNombre.setText(producto.getNombre());
             textViewDescripcion.setText(producto.getDescripcion());
-            if (producto.getQuantity() >0) {
-                editTextQuantity.setText(producto.getQuantity().toString());
-            } else {
-                editTextQuantity.setText("");
-            }
+            textViewQuantity.setText(producto.getQuantity().toString());
             if (categoryName.equals(FragmentViewPagerProductos.KEY_COMPRA)){
-                textViewPrice.setText("$" + df.format(producto.getPrecioCompra()));
+                textViewPrice.setText("$" + producto.getPrecioCompra().toString());
             }else {
-                textViewPrice.setText("$" + df.format(producto.getPrecioVenta()));
+                textViewPrice.setText("$" + producto.getPrecioVenta().toString());
             }
         }
     }
@@ -144,9 +134,6 @@ public class AdapterRecyclerProductos extends RecyclerView.Adapter<AdapterRecycl
                 total = total + product.getPrecioVenta() * product.getQuantity();
            }
         }
-
-        DecimalFormat df = new DecimalFormat("####0.00");
-
-        return " " + categoryName + ": $" + df.format(total);
+        return " " + categoryName + ": $" + total.toString();
     }
 }

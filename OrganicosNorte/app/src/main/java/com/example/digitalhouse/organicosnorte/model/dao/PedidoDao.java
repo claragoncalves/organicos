@@ -13,7 +13,7 @@ import java.util.List;
 @Dao
 public interface PedidoDao {
 
-    @Query("SELECT * FROM pedidos ORDER BY fecha ASC")
+    @Query("SELECT * FROM pedidos")
     List<Pedido> getAll();
 
     @Query("SELECT * FROM pedidos WHERE id = :idPedido")

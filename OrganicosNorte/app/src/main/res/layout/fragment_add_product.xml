@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="50"
-            android:hint="Costo">
+            android:hint="Precio compra">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/textInputPrecioCompra"
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="50"
-            android:hint="Precio">
+            android:hint="Precio venta">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/textInputPrecioVenta"

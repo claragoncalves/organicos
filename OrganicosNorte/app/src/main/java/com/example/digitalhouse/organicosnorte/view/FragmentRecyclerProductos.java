@@ -11,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ import com.example.digitalhouse.organicosnorte.R;
 import com.example.digitalhouse.organicosnorte.controller.PedidoController;
 import com.example.digitalhouse.organicosnorte.controller.ProductoController;
 import com.example.digitalhouse.organicosnorte.model.pojo.Categoria;
+import com.example.digitalhouse.organicosnorte.model.pojo.DBSingleton;
 import com.example.digitalhouse.organicosnorte.model.pojo.Pedido;
 import com.example.digitalhouse.organicosnorte.model.pojo.PedidoDetalle;
 import com.example.digitalhouse.organicosnorte.model.pojo.Producto;
@@ -34,7 +37,6 @@ public class FragmentRecyclerProductos extends Fragment implements AdapterRecycl
     private TextView textViewTotal;
     private AdapterRecyclerProductos adapterRecyclerProductos;
     private PedidoAddListener pedidoAddListener;
-    private String category;
 
     public static FragmentRecyclerProductos factory(Categoria categoria){
         FragmentRecyclerProductos fragmentRecyclerProductos = new FragmentRecyclerProductos();
@@ -52,8 +54,11 @@ public class FragmentRecyclerProductos extends Fragment implements AdapterRecycl
 
         Bundle bundle = getArguments();
         textViewTotal = view.findViewById(R.id.textViewTotalPrice);
-        category = bundle.getString(KEY_CATEGORY_NAME);
-
+        if (bundle.getString(KEY_CATEGORY_NAME).equals(FragmentViewPagerProductos.KEY_COMPRA)) {
+            textViewTotal.setText("Compra: $0.0");
+        }else{
+            textViewTotal.setText("Venta: $0.0");
+        }
         RecyclerView recyclerView = view.findViewById(R.id.recyclerProductos);
         adapterRecyclerProductos = new AdapterRecyclerProductos(ProductoController.getAll(getContext()), getContext(),bundle.getString(KEY_CATEGORY_NAME), this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
@@ -74,14 +79,13 @@ public class FragmentRecyclerProductos extends Fragment implements AdapterRecycl
 
     @Override
     public void quantityTapped(String total) {
-
         textViewTotal.setText(total);
     }
 
     public void createDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_pedido_layout, null));
-        builder.setMessage("Agregar productos a pedido nuevo")
+        builder.setMessage("Ingrese el nombre del pedido")
                 .setTitle("Guardar Pedido")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
@@ -90,12 +94,10 @@ public class FragmentRecyclerProductos extends Fragment implements AdapterRecycl
                         EditText editText = ((AlertDialog) dialog).findViewById(R.id.editTextDialogPedidoTitle);
 
                         if (!editText.getText().toString().equals("")){
+                        RadioGroup radioGroup = ((AlertDialog) dialog).findViewById(R.id.radioGroupCompraVenta);
+                        Boolean compraVenta = R.id.radioButtonVenta == radioGroup.getCheckedRadioButtonId();
                         Pedido pedido = new Pedido(null, editText.getText().toString());
-                        if (category.equals(FragmentViewPagerProductos.KEY_COMPRA)) {
-                            pedido.setCompraVenta(false);
-                        }else {
-                            pedido.setCompraVenta(true);
-                        }
+                        pedido.setCompraVenta(compraVenta);
                         pedidoAddListener.agregarPedido(pedido, getListaDeProductosAsDetalles());
                         }else {
                             Spinner s = ((AlertDialog) dialog).findViewById(R.id.dropDownPedidos);

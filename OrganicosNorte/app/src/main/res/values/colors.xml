@@ -2,9 +2,8 @@
 <resources>
     <color name="colorPrimary">#009688</color>
     <color name="colorPrimaryDark">#00796B</color>
-    <color name="colorKalenaRed">#e30713</color>
     <color name="primary_light">#B2DFDB</color>
-    <color name="colorAccent">#ceba64</color>
+    <color name="colorAccent">#FFEB3B</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
     <color name="icons">#FFFFFF</color>
