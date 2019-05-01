@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/recyclerDetallesPedidosLayout"
     tools:context="com.example.digitalhouse.organicosnorte.view.FragmentRecyclerDetallePedido">
 
     <android.support.v7.widget.RecyclerView
@@ -39,4 +40,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+
+
+    <ImageButton
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:background="@color/colorAccent"
+        android:id="@+id/buttonShareDetallesPedidos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_share_black_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>
