@@ -150,14 +150,19 @@ public class MainActivity extends AppCompatActivity implements AdapterRecyclerPr
 
     public void cargarProductos(){
         List<Producto> productos = new ArrayList<>();
-        productos.add(new Producto(null,"Yerba Kalena", "Pack 12 x 500gr", 360.0,440.0));
-        productos.add(new Producto(null, "Yerba Kalena", "Pack 5 x 2kg", 570.0,696.0));
-        productos.add(new Producto(null,"Yerba Kalena", "Granel x 12kg", 504.0, 672.0 ));
-        productos.add(new Producto(null,"Azucar Balajú", "Bolsa x 10kg", 350.0, 480.0 ));
-        productos.add(new Producto(null,"Azucar Balajú", "Pack 24 x 500gr", 480.0, 625.0 ));
-        productos.add(new Producto(null,"Azucar Balajú", "Bolsa x 5kg", 175.0, 240.0 ));
-        productos.add(new Producto(null,"Té Kalena Boldo", "20 cajas x 24 saquitos", 400.0, 513.0 ));
-        productos.add(new Producto(null,"Té Kalena Rojo, Verde, Manzanilla", "20 cajas x 24 saquitos", 340.0, 432.0 ));
+        productos.add(new Producto(null,"Yerba Kalena", "Pack 12 x 500gr", 684.0, 855.0));
+        productos.add(new Producto(null, "Yerba Kalena", "Pack 5 x 2kg", 1090.0, 1362.0));
+        productos.add(new Producto(null,"Yerba Kalena", "Granel x 10kg", 950.0, 1187.0 ));
+        productos.add(new Producto(null,"Azucar Balajú", "Pack 24 x 500gr", 672.0, 1100.0 ));
+        productos.add(new Producto(null,"Azucar Balajú", "Bolsa x 5kg", 225.0, 350.0 ));
+        productos.add(new Producto(null,"Miel de caña", "6 x 750cc", 420.0, 588.0 ));
+        productos.add(new Producto(null,"Té Kalena Boldo", "20 cajas x 25 saquitos", 800.0, 1000.0 ));
+        productos.add(new Producto(null,"Té Kalena Hierbas", "20 cajas x 25 saquitos", 800.0, 1000.0 ));
+        productos.add(new Producto(null,"Mate Cocido Kalena", "20 cajas x 25 saquitos", 800.0, 1000.0 ));
+        productos.add(new Producto(null,"Té Kalena Rojo", "20 cajas x 25 saquitos", 700.0, 854.0 ));
+        productos.add(new Producto(null,"Té Kalena Verde", "20 cajas x 25 saquitos", 700.0, 854.0 ));
+        productos.add(new Producto(null,"Té Kalena Manzanilla", "20 cajas x 25 saquitos", 700.0, 854.0 ));
+        productos.add(new Producto(null,"Mix Patagónico", "Pack 500gr", 200.0, 260.0 ));
 
         for (Producto producto:productos) {
             addProduct(producto);

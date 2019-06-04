@@ -162,7 +162,7 @@ public class FragmentRecyclerDetallePedido extends Fragment {
         imageButtonBorrarPedido.setVisibility(View.INVISIBLE);
         imageButtonSharePedido.setVisibility(View.INVISIBLE);
         constraintLayout.setDrawingCacheEnabled(true);
-        Bitmap bitmap = getBitmapFromView(constraintLayout); // here give id of our root layout (here its my FrameLayout's id)
+        Bitmap bitmap = getBitmapFromView(constraintLayout);
         constraintLayout.setDrawingCacheEnabled(false);
         imageButtonBorrarPedido.setVisibility(View.VISIBLE);
         imageButtonSharePedido.setVisibility(View.VISIBLE);
